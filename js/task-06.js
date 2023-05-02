@@ -1,24 +1,15 @@
-const input = document.getElementById('validation-input');
-
-function inputText(event) {
-    if (event.currentTarget.value !== "") {
-        input.textContent = event.currentTarget.value;
-    }
-}
-input.addEventListener('input', inputText);
-
-input.onblur = function () {
-    if (input.textContent.length !== Number(input.dataset.length)) {
-        input.classList.add('invalid');
-    }
-    else {
-        input.classList.add('valid');
-    }
-}
-input.onfocus = function () {
-    if (input.classList.contains('invalid')) {
-        input.classList.remove('invalid');
-    }
-    if (input.classList.contains('valid'))
-        input.classList.remove('valid');
-}
+const textInput = document.querySelector('#validation-input')
+console.log(textInput.getAttribute('data-length'))
+textInput.addEventListener('blur', event => {
+ if (event.target.value.length == textInput.getAttribute('data-length')) {
+  textInput.classList.add('valid')
+  if (textInput.classList.contains('invalid')) {
+   textInput.classList.remove('invalid')
+  }
+ } else {
+  if (textInput.classList.contains('valid')) {
+   textInput.classList.remove('valid')
+  }
+  textInput.classList.add('invalid')
+ }
+})
